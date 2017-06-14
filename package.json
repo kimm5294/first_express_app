@@ -1,0 +1,11 @@
+{
+  "name": "first_express_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kimm5294/first_express_app.git",
+  "author": "Matt Kim <kimm5294@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
