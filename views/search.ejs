@@ -4,4 +4,10 @@
 
 <h3>Here's the weather in <%= data["location"]["city"] %>, <%= data["location"]["region"] %>, <%= data["location"]["country"] %></h3>
 
+<div>
+  It is currently <%=data["item"]["condition"]["temp"] %> and <%=data["item"]["condition"]["text"].toLowerCase() %> on <%=data["item"]["condition"]["date"] %>
+
+</div>
+
+
 <% include partials/footer %>
