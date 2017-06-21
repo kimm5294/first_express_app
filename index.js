@@ -1,6 +1,14 @@
 var express = require("express");
 var app = express();
 
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/weather");
+var locationSchema = new mongoose.Schema({
+  name: String,
+  api_id: String
+})
+var Location = mongoose.model("Location", locationSchema);
+
 var request = require("request");
 
 var bodyParser = require("body-parser");
