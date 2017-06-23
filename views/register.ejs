@@ -1,7 +1,11 @@
+<% include partials/header %>
+
 <h1>Registration Page</h1>
 
 <form action="/register" method="GET">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
+  <input type="text" name="user[username]" placeholder="Username">
+  <input type="password" name="user[password]" placeholder="Password">
   <input type="submit" value="Register">
 </form>
+
+<% include partials/footer %>
