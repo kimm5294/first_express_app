@@ -1,19 +1,34 @@
-var express = require("express");
-var app = express();
+var express               = require("express"),
+    app                   = express(),
+    mongoose              = require("mongoose"),
+    passport              = require("passport"),
+    bodyParser            = require("body-parser"),
+    LocalStrategy         = require("passport-local"),
+    passportLocalMongoose = require("passport-local-mongoose"),
+    User                  = require("./models/user"),
+    Location              = require("./models/location"),
+    request               = require("request");
 
-var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/weather");
 
-var Location = require("./models/location");
-
-var request = require("request");
-
-var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
+app.use(require("express-session")({
+  secret: "This is my first express app",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//#########################
+//ROUTES
+//#########################
 app.get("/", (req, res)=>{
   res.render("homepage");
 });
