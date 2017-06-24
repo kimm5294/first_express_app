@@ -32,7 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 //ROUTES
 //#########################
 app.get("/", (req, res)=>{
-  res.render("homepage");
+  res.render("homepage", {user: req.user});
 });
 
 
@@ -64,6 +64,11 @@ app.post("/login", passport.authenticate("local", {
   failureRedirect: "/login"
 }), (req, res)=>{
 });
+
+app.get("/logout", (req, res)=>{
+  req.logout();
+  res.redirect("/");
+})
 
 app.get("/search", (req, res)=>{
   var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" + req.query.location + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
