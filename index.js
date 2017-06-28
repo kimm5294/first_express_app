@@ -24,6 +24,11 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next)=>{
+  res.locals.user = req.user;
+  next();
+});
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -32,13 +37,13 @@ passport.deserializeUser(User.deserializeUser());
 //ROUTES
 //#########################
 app.get("/", (req, res)=>{
-  res.render("homepage", {user: req.user});
+  res.render("homepage");
 });
 
 
 //REGISTER ROUTES
 app.get("/register", (req, res)=>{
-  res.render("register", {user: req.user});
+  res.render("register");
 });
 
 app.post("/register", (req, res)=>{
@@ -56,7 +61,7 @@ app.post("/register", (req, res)=>{
 
 //LOGIN ROUTES
 app.get("/login", (req, res)=>{
-  res.render("login", {user: req.user});
+  res.render("login");
 })
 
 app.post("/login", passport.authenticate("local", {
@@ -73,7 +78,7 @@ app.get("/logout", (req, res)=>{
 //USER ROUTES
 
 app.get("/users/:id", (req, res)=>{
-  res.render("users/show", {user: req.user});
+  res.render("users/show");
 });
 
 
