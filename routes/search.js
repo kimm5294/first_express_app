@@ -9,8 +9,8 @@ router.get("/search", (req, res)=>{
 
 
   request(url, (error, response, body)=> {
-    if (!error && response.statusCode == 200) {
-      var data = JSON.parse(body);
+    var data = JSON.parse(body);
+    if (!error && response.statusCode == 200 && data["query"]["count"]!=0) {
       var weather = data["query"]["results"]["channel"]
       console.log(data["query"]["results"]["channel"]["item"]["condition"]);
       res.render("search", {data: weather, user: req.user})
