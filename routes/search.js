@@ -12,8 +12,8 @@ router.get("/search", (req, res)=>{
     var data = JSON.parse(body);
     if (!error && response.statusCode == 200 && data["query"]["count"]!=0) {
       var weather = data["query"]["results"]["channel"]
-      console.log(data["query"]["results"]["channel"]["item"]["condition"]);
-      res.render("search", {data: weather, user: req.user})
+      var name = weather["location"]["city"] + ", " + weather["location"]["region"] + ", " + weather["location"]["country"]
+      res.render("search", {data: weather, name: name})
     } else {
       res.send("doesn't work")
     }
