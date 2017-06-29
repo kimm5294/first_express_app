@@ -6,7 +6,6 @@ var express               = require("express"),
     LocalStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     User                  = require("./models/user"),
-    Location              = require("./models/location"),
     request               = require("request");
 
 
