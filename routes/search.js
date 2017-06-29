@@ -9,8 +9,8 @@ router.get("/search", (req, res)=>{
 
 
   request(url, (error, response, body)=> {
-    var data = JSON.parse(body);
-    if (!error && response.statusCode == 200 && data["query"]["count"]!=0) {
+    if (!error && response.statusCode == 200 && JSON.parse(body)["query"]["count"]!=0) {
+      var data = JSON.parse(body);
       var weather = data["query"]["results"]["channel"]
       var name = weather["location"]["city"] + ", " + weather["location"]["region"] + ", " + weather["location"]["country"]
       res.render("search", {data: weather, name: name})
@@ -18,6 +18,12 @@ router.get("/search", (req, res)=>{
       res.send("doesn't work")
     }
   })
+});
+
+router.post("/save", (req, res)=>{
+  req.user.locations.push(req.body.location);
+  console.log(req.user);
+  console.log(req.body);
 });
 
 module.exports = router;
