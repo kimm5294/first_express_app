@@ -9,9 +9,12 @@
 
 </div>
 
-<form>
-
-</form>
+<% if (user){ %>
+  <form action="/save" method="POST">
+    <input type="hidden" name="location" value="<%=name %>">
+    <input type="submit" value="Save">
+  </form>
+<% } %>
 
 
 <% include partials/footer %>
