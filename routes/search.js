@@ -22,8 +22,16 @@ router.get("/search", (req, res)=>{
 
 router.post("/save", (req, res)=>{
   req.user.locations.push(req.body.location);
+  req.user.save((err, user)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(user)
+    }
+  });
   console.log(req.user);
   console.log(req.body);
+  res.redirect("/")
 });
 
 module.exports = router;
