@@ -38,4 +38,16 @@ router.get("/logout", (req, res)=>{
   res.redirect("/");
 });
 
+router.get("/users/:id", (req, res)=>{
+  console.log(req.params.id)
+  User.findById(req.params.id, (err, userShow)=>{
+    if (err) {
+      console.log("error")
+    } else {
+      res.render("users/show");
+    }
+  })
+
+})
+
 module.exports = router;
