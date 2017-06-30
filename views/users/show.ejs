@@ -1,1 +1,14 @@
+<% include ../partials/header %>
+
 <h1>User Show Page</h1>
+
+<div>
+  <h3>Saved Locations</h3>
+  <ul>
+    <% user.locations.forEach((place)=>{ %>
+      <li><%=place %></li>
+    <% }) %>
+  </ul>
+</div>
+
+<% include ../partials/footer %>
