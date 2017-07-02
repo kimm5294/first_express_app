@@ -1,7 +1,8 @@
 var express  = require("express"),
     router   = express.Router(),
     User     = require("../models/user"),
-    passport = require("passport");
+    passport = require("passport"),
+    flash    = require("connect-flash");
 
 
 //REGISTER ROUTES
@@ -24,7 +25,7 @@ router.post("/register", (req, res)=>{
 
 //LOGIN ROUTES
 router.get("/login", (req, res)=>{
-  res.render("login");
+  res.render("login", {message: req.flash("error")});
 })
 
 router.post("/login", passport.authenticate("local", {
@@ -53,6 +54,7 @@ function isUser(req, res, next){
   if (req.user && req.user.id == req.params.id) {
     next();
   } else {
+    req.flash("error", "Must be logged in with proper account to access this page.")
     res.redirect("/login");
   }
 };
