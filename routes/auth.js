@@ -38,7 +38,7 @@ router.get("/logout", (req, res)=>{
   res.redirect("/");
 });
 
-router.get("/users/:id", (req, res)=>{
+router.get("/users/:id", isUser, (req, res)=>{
   console.log(req.params.id)
   User.findById(req.params.id, (err, userShow)=>{
     if (err) {
@@ -47,7 +47,14 @@ router.get("/users/:id", (req, res)=>{
       res.render("users/show");
     }
   })
+});
 
-})
+function isUser(req, res, next){
+  if (req.user && req.user.id == req.params.id) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
 
 module.exports = router;

@@ -41,6 +41,7 @@ passport.deserializeUser(User.deserializeUser());
 //ROUTES
 //#########################
 
+
 app.use(authRoutes);
 
 app.use(searchRoutes);
@@ -49,11 +50,6 @@ app.get("/", (req, res)=>{
   res.render("homepage");
 });
 
-//USER ROUTES
-
-app.get("/users/:id", (req, res)=>{
-  res.render("users/show");
-});
 
 
 
