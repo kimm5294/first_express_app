@@ -6,7 +6,8 @@ var express               = require("express"),
     LocalStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     User                  = require("./models/user"),
-    request               = require("request");
+    request               = require("request"),
+    flash                 = require("connect-flash");
 
 
 
@@ -14,6 +15,8 @@ var authRoutes   = require("./routes/auth"),
     searchRoutes = require("./routes/search");
 
 mongoose.connect("mongodb://localhost/weather");
+
+app.use(flash());
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
