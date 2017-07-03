@@ -7,14 +7,15 @@ var express  = require("express"),
 
 //REGISTER ROUTES
 router.get("/register", (req, res)=>{
-  res.render("register");
+  res.render("register", {message: req.flash("register_error")});
 });
 
 router.post("/register", (req, res)=>{
   User.register(new User({username: req.body.username}), req.body.password, (err, user)=>{
     if (err) {
       console.log(err);
-      res.render("register");
+      req.flash("register_error", err.message)
+      res.redirect("/register");
     } else {
       passport.authenticate("local")(req,res, ()=>{
         res.redirect("/");
