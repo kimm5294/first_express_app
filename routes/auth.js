@@ -7,14 +7,15 @@ var express  = require("express"),
 
 //REGISTER ROUTES
 router.get("/register", (req, res)=>{
-  res.render("register");
+  res.render("register", {message: req.flash("register_error")});
 });
 
 router.post("/register", (req, res)=>{
   User.register(new User({username: req.body.username}), req.body.password, (err, user)=>{
     if (err) {
       console.log(err);
-      res.render("register");
+      req.flash("register_error", err.message)
+      res.redirect("/register");
     } else {
       passport.authenticate("local")(req,res, ()=>{
         res.redirect("/");
@@ -25,12 +26,18 @@ router.post("/register", (req, res)=>{
 
 //LOGIN ROUTES
 router.get("/login", (req, res)=>{
-  res.render("login", {message: req.flash("error")});
+  res.render("login",
+    {
+      message: req.flash("restricted"),
+      err: req.flash("error")
+    }
+  );
 })
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/login"
+  failureRedirect: "/login",
+  failureFlash: true
 }), (req, res)=>{
 });
 
@@ -54,7 +61,7 @@ function isUser(req, res, next){
   if (req.user && req.user.id == req.params.id) {
     next();
   } else {
-    req.flash("error", "Must be logged in with proper account to access this page.")
+    req.flash("restricted", "Must be logged in with proper account to access this page.")
     res.redirect("/login");
   }
 };
