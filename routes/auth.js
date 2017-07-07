@@ -35,7 +35,7 @@ router.get("/login", (req, res)=>{
 })
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/users/profile",
   failureRedirect: "/login",
   failureFlash: true
 }), (req, res)=>{
@@ -46,9 +46,8 @@ router.get("/logout", (req, res)=>{
   res.redirect("/");
 });
 
-router.get("/users/:id", isUser, (req, res)=>{
-  console.log(req.params.id)
-  User.findById(req.params.id, (err, userShow)=>{
+router.get("/users/profile", (req, res)=>{
+  User.findById(req.user.id, (err, userShow)=>{
     if (err) {
       console.log("error")
     } else {
@@ -56,14 +55,5 @@ router.get("/users/:id", isUser, (req, res)=>{
     }
   })
 });
-
-function isUser(req, res, next){
-  if (req.user && req.user.id == req.params.id) {
-    next();
-  } else {
-    req.flash("restricted", "Must be logged in with proper account to access this page.")
-    res.redirect("/login");
-  }
-};
 
 module.exports = router;
