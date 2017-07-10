@@ -2,3 +2,18 @@ body {
   background: url("http://www.100hdwallpapers.com/wallpapers/2880x1800/lake_wakatipu_lscape-widescreen_wallpapers.jpg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.navbar {
+  background-color: #f2f2f2;
+}
+
+.container-fluid {
+  margin: auto;
+}
+
+#login-container {
+  margin: auto;
+  width: 50%;
+  opacity: 0.5;
+  background-color: white;
+}
