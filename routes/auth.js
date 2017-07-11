@@ -47,13 +47,19 @@ router.get("/logout", (req, res)=>{
 });
 
 router.get("/users/profile", (req, res)=>{
-  User.findById(req.user.id, (err, userShow)=>{
-    if (err) {
-      console.log("error")
-    } else {
-      res.render("users/show");
-    }
-  })
+  if (req.user) {
+    User.findById(req.user.id, (err, userShow)=>{
+      if (err) {
+        console.log("error")
+        console.log("!!!!!!!!!!!!!!!")
+      } else {
+        res.render("users/show");
+      };
+    });
+  } else {
+    req.flash("restricted", "User must be logged in");
+    res.redirect("/login");
+  };
 });
 
 module.exports = router;

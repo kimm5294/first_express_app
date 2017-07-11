@@ -2,11 +2,19 @@
 
 <div class="container-fluid">
   <div class="jumbotron" id="login-container">
-    <h1><%= message %></h1>
-
-    <h1><%=err[0] %></h1>
 
     <h1>Login</h1>
+
+    <% if (message[0]) { %>
+      <ul>
+        <li><%= message %></li>
+      </ul>
+    <% } %>
+    <% if (err[0]) { %>
+      <ul>
+        <li><%= err[0] %></li>
+      </ul>
+    <% } %>
 
     <form action="/login" method="POST">
       <div class="form-group">
