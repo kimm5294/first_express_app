@@ -8,12 +8,12 @@ body {
 }
 
 .container-fluid {
-  margin: auto;
+  margin-top: 10px;
 }
 
 #login-container {
   margin: auto;
   width: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
   background-color: white;
 }
