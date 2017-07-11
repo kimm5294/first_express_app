@@ -7,12 +7,12 @@
 
     <% if (message[0]) { %>
       <ul>
-        <li><%= message %></li>
+        <li class="flash-error"><%= message %></li>
       </ul>
     <% } %>
     <% if (err[0]) { %>
       <ul>
-        <li><%= err[0] %></li>
+        <li class="flash-error"><%= err[0] %></li>
       </ul>
     <% } %>
 
