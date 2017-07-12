@@ -11,9 +11,13 @@ body {
   margin-top: 10px;
 }
 
-#login-container {
+.form-container {
   margin: auto;
   width: 50%;
   opacity: 0.9;
   background-color: white;
+}
+
+.flash-error {
+  color: red;
 }

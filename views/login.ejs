@@ -1,18 +1,18 @@
 <% include partials/header %>
 
 <div class="container-fluid">
-  <div class="jumbotron" id="login-container">
+  <div class="jumbotron form-container">
 
     <h1>Login</h1>
 
     <% if (message[0]) { %>
       <ul>
-        <li><%= message %></li>
+        <li class="flash-error"><%= message %></li>
       </ul>
     <% } %>
     <% if (err[0]) { %>
       <ul>
-        <li><%= err[0] %></li>
+        <li class="flash-error"><%= err[0] %></li>
       </ul>
     <% } %>
 
