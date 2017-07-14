@@ -28,3 +28,12 @@ body {
 .flash-error {
   color: red;
 }
+
+.homepage-search form {
+  text-align: center;
+}
+
+.homepage-search form input[type=text] {
+  border: 2px solid green;
+  border-radius: 5px;
+}
