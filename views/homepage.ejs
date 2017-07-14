@@ -4,9 +4,10 @@
   <h1>Rain or Shine</h1>
 </div>
 
-<form method="get" action="/search">
-  <input type="text" name="location" placeholder="Enter location"/>
-  <input type="submit" value="Search"/>
-</form>
-
+<div class="homepage-search">
+  <form method="get" action="/search">
+    <input type="text" name="location" placeholder="Enter location"/>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
 <% include partials/footer %>
