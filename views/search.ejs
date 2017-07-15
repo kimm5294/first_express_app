@@ -1,20 +1,22 @@
 <% include partials/header %>
 
-<h1>Search Results Page</h1>
+<div class="container-fluid">
+  <div class="jumbotron form-container">
+    <h1>Search Results Page</h1>
 
-<h3>Here's the weather in <%= name %></h3>
+    <h3>Here's the weather in <%= name %></h3>
 
-<div>
-  It is currently <%=data["item"]["condition"]["temp"] %> and <%=data["item"]["condition"]["text"].toLowerCase() %> on <%=data["item"]["condition"]["date"] %>
+    <div>
+      It is currently <%=data["item"]["condition"]["temp"] %> and <%=data["item"]["condition"]["text"].toLowerCase() %> on <%=data["item"]["condition"]["date"] %>
 
+    </div>
+
+    <% if (user && !user.locations.includes(name)){ %>
+      <form action="/save" method="POST">
+        <input type="hidden" name="location" value="<%=name %>">
+        <input type="submit" value="Save">
+      </form>
+    <% } %>
+  </div>
 </div>
-
-<% if (user && !user.locations.includes(name)){ %>
-  <form action="/save" method="POST">
-    <input type="hidden" name="location" value="<%=name %>">
-    <input type="submit" value="Save">
-  </form>
-<% } %>
-
-
 <% include partials/footer %>
