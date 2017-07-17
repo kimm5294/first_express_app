@@ -1,14 +1,19 @@
 <% include ../partials/header %>
 
-<h1>User Show Page</h1>
+<div class="container-fluid">
+  <div class="jumbotron form-container">
+    <h1>Welcome, <%= user.username %></h1>
 
-<div>
-  <h3>Saved Locations</h3>
-  <ul>
-    <% user.locations.forEach((place)=>{ %>
-      <li><a href="/display/<%=place %>"><%=place %></a></li>
-    <% }) %>
-  </ul>
+    <div>
+      <h3>Saved Locations</h3>
+      <ul>
+        <% user.locations.forEach((place)=>{ %>
+          <li><a href="/display/<%=place %>"><%=place %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
 </div>
+
 
 <% include ../partials/footer %>
