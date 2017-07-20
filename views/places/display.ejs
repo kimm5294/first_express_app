@@ -3,7 +3,9 @@
 <div class="container-fluid">
   <div class="form-container jumbotron">
     <h1><%=name %></h1>
-    <h3><%= weather["item"]["condition"]["temp"] %>
+    <div class="page-header">
+      <h3><%= weather["item"]["condition"]["temp"] %> and <%= weather["item"]["condition"]["text"] %> <small>on <%= weather["item"]["condition"]["date"] %></small></h3>
+    </div>
   </div>
 </div>
 
