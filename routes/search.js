@@ -13,7 +13,7 @@ router.get("/search", (req, res)=>{
       var data = JSON.parse(body);
       var weather = data["query"]["results"]["channel"]
       var name = weather["location"]["city"] + ", " + weather["location"]["region"] + ", " + weather["location"]["country"]
-      res.render("search", {data: weather, name: name})
+      res.render("search", {weather: weather, name: name})
     } else {
       res.send("doesn't work")
     }
