@@ -1,16 +1,11 @@
 <% include partials/header %>
 
 <div class="container-fluid">
-  <div class="jumbotron form-container">
-
-    <h3><%= name %></h3>
-
-    <div>
-      <h5>Current Weather</h5>
-      <%=data["item"]["condition"]["temp"] %> and <%=data["item"]["condition"]["text"].toLowerCase() %> on <%=data["item"]["condition"]["date"] %>
-
+  <div class="form-container jumbotron">
+    <h1><%=name %></h1>
+    <div class="page-header">
+      <h3><%= weather["item"]["condition"]["temp"] %> and <%= weather["item"]["condition"]["text"] %> <small>on <%= weather["item"]["condition"]["date"] %></small></h3>
     </div>
-
     <% if (user && !user.locations.includes(name)){ %>
       <form action="/save" method="POST">
         <input type="hidden" name="location" value="<%=name %>">
@@ -18,5 +13,6 @@
       </form>
     <% } %>
   </div>
+
 </div>
 <% include partials/footer %>
