@@ -9,7 +9,7 @@
     <% if (user && !user.locations.includes(name)){ %>
       <form action="/save" method="POST">
         <input type="hidden" name="location" value="<%=name %>">
-        <input type="submit" value="Save">
+        <input class="btn btn-success" type="submit" value="Save">
       </form>
     <% } %>
   </div>
