@@ -14,8 +14,10 @@
     <% } %>
     <div class="forecast">
       <h3>Forecast</h3>
-      <p><%=weather["item"]["forecast"][0]["text"] %></p<
-    </div<
+        <% weather["item"]["forecast"].forEach((day)=>{ %>
+          <p><%=day["text"] %> on <%=day["day"] %> <%=day["date"] %></p>
+        <% }) %>
+    </div>
   </div>
 
 </div>
