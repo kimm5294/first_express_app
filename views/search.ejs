@@ -15,7 +15,7 @@
     <div class="forecast">
       <h3>Forecast</h3>
         <% weather["item"]["forecast"].forEach((day)=>{ %>
-          <p><%=day["text"] %> on <%=day["day"] %> <%=day["date"] %></p>
+          <p><%=day["day"] %>- <%=day["text"] %> on <%=day["date"] %></p>
         <% }) %>
     </div>
   </div>
